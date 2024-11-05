@@ -1,0 +1,89 @@
+services:
+  dev_postgres:
+    profiles:
+      - dev
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+
+  dev_minio:
+    image: minio/minio
+    profiles:
+      - dev
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    command: server /data
+    ports:
+      - "9000:9000"
+    networks:
+      - mynetwork
+
+  prod_postgres:
+    profiles:
+      - prod
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    networks:
+      - mynetwork
+
+  prod_minio:
+    image: minio/minio
+    profiles:
+      - prod
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    command: server /data
+    ports:
+      - "9000:9000"
+    networks:
+      - mynetwork
+
+  app_dev:
+    image: ghcr.io/itmo-loveconnect/connect:latest
+    profiles:
+      - prod
+    environment:
+      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin
+    depends_on:
+      - postgres
+      - minio
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+  app_prod:
+    image: ghcr.io/itmo-loveconnect/connect:latest
+    profiles:
+      - prod
+    environment:
+      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin
+    depends_on:
+      - postgres
+      - minio
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
