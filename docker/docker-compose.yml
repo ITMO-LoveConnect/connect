@@ -1,4 +1,5 @@
 services:
+  ##### DEV PROFILE #####
   dev_postgres:
     profiles:
       - dev
@@ -8,7 +9,7 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - mynetwork
 
@@ -25,6 +26,24 @@ services:
     networks:
       - mynetwork
 
+  dev_app:
+    image: ghcr.io/itmo-loveconnect/connect:latest
+    profiles:
+      - dev
+    environment:
+      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+      S3_ENDPOINT: http://minio:9000
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin
+    depends_on:
+      - dev_postgres
+      - dev_minio
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+  ##### PROD PROFILE #####
   prod_postgres:
     profiles:
       - prod
@@ -35,6 +54,8 @@ services:
       POSTGRES_PASSWORD: mypassword
     ports:
       - "5432:5432"
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
     networks:
       - mynetwork
 
@@ -46,40 +67,25 @@ services:
       MINIO_ACCESS_KEY: minioadmin
       MINIO_SECRET_KEY: minioadmin
     command: server /data
+    volumes:
+      - /data/minio:/data
     ports:
       - "9000:9000"
     networks:
       - mynetwork
 
-  app_dev:
+  prod_app:
     image: ghcr.io/itmo-loveconnect/connect:latest
     profiles:
       - prod
     environment:
-      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
+      DATABASE_URL: postgres://myuser:mypassword@postgres:5433/mydatabase
       S3_ENDPOINT: http://minio:9000
       S3_ACCESS_KEY: minioadmin
       S3_SECRET_KEY: minioadmin
     depends_on:
-      - postgres
-      - minio
-    ports:
-      - "8080:8080"
-    networks:
-      - mynetwork
-
-  app_prod:
-    image: ghcr.io/itmo-loveconnect/connect:latest
-    profiles:
-      - prod
-    environment:
-      DATABASE_URL: postgres://myuser:mypassword@postgres:5432/mydatabase
-      S3_ENDPOINT: http://minio:9000
-      S3_ACCESS_KEY: minioadmin
-      S3_SECRET_KEY: minioadmin
-    depends_on:
-      - postgres
-      - minio
+      - prod_postgres
+      - prod_minio
     ports:
       - "8080:8080"
     networks:
@@ -87,3 +93,4 @@ services:
 
 networks:
   mynetwork:
+    driver: bridge
