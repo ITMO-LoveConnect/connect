@@ -1,13 +1,13 @@
-package ru.itmo.connect;
+package ru.itmo.loveconnect;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConnectApplication {
+public class LoveconnectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConnectApplication.class, args);
+		SpringApplication.run(LoveconnectApplication.class, args);
 	}
 
 }

@@ -1,10 +1,10 @@
-package ru.itmo.connect;
+package ru.itmo.loveconnect;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConnectApplicationTests {
+class LoveconnectApplicationTests {
 
 	@Test
 	void contextLoads() {
