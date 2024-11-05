@@ -1,7 +1,13 @@
 name: Docker Publish Image CI
 
 on:
-  - workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      UPDATE_LATEST:
+        description: Если true этот пайплайн обновит latest тэг в ghcr
+        required: true
+        type: boolean
+        default: false
 
 env:
   REGISTRY: ghcr.io
@@ -36,5 +42,11 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build the Docker image
         run: ./gradlew bootBuildImage --imageName=${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.month}}-${{steps.date.outputs.day}}-${{steps.date.outputs.time}}
-      - name: Push docker
+      - if: ${{inputs.UPDATE_LATEST}}
+        name: Add latest tag
+        run: docker tag ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.month}}-${{steps.date.outputs.day}}-${{steps.date.outputs.time}} ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
+      - name: Push docker image version
         run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.month}}-${{steps.date.outputs.day}}-${{steps.date.outputs.time}}
+      - if: ${{inputs.UPDATE_LATEST}}
+        name: Update latest tag
+        run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
