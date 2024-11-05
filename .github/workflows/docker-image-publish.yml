@@ -1,0 +1,40 @@
+name: Docker Publish Image CI
+
+on:
+  - workflow_dispatch
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{vars.ORG_NAME_LOWER_CASE}}/${{github.event.repository.name}}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: 21
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Compute current datetime
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: 'YY-MM-DD-HH-mm'
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{env.REGISTRY}}
+          username: ${{vars.ORG_NAME_LOWER_CASE}}
+          password: ${{secrets.GITHUB_TOKEN}}
+      - name: Build the Docker image
+        run: ./gradlew bootBuildImage --imageName=${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.month}}-${{steps.date.outputs.day}}-${{steps.date.outputs.time}}
+      - name: Push docker
+        run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.month}}-${{steps.date.outputs.day}}-${{steps.date.outputs.time}}
