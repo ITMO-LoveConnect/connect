@@ -32,5 +32,5 @@ public class UserSocialNetworkEntity extends AbstractPersistable<UUID> {
 
     private SocialNetworkType type;
 
-    private String profileId;
+    private String externalId;
 }
