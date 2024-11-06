@@ -1,0 +1,53 @@
+name: Docker Publish Image CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      UPDATE_LATEST:
+        description: Обновить latest тэг?
+        required: true
+        type: boolean
+        default: false
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{vars.ORG_NAME_LOWER_CASE}}/${{github.event.repository.name}}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: 21
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Compute current datetime
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: 'yy-MM-DD-HH-mm'
+          timezone-offset: '3'
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{env.REGISTRY}}
+          username: ${{vars.ORG_NAME_LOWER_CASE}}
+          password: ${{secrets.GITHUB_TOKEN}}
+      - name: Build the Docker image
+        run: ./gradlew bootBuildImage --imageName=${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.time}}
+      - if: ${{inputs.UPDATE_LATEST}}
+        name: Add latest tag
+        run: docker tag ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.time}} ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
+      - name: Push docker image version
+        run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:${{steps.date.outputs.time}}
+      - if: ${{inputs.UPDATE_LATEST}}
+        name: Update latest tag
+        run: docker push ${{env.REGISTRY}}/${{env.IMAGE_NAME}}:latest
