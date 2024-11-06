@@ -6,8 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,11 +19,13 @@ import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
+import ru.itmo.loveconnect.entity.enums.Gender;
 import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
 import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
 import ru.itmo.loveconnect.entity.enums.SmokePreference;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -32,6 +37,10 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", nullable = false)
+    private Gender gender;
 
     @Column(name = "avatar_url")
     private String avatarUrl;
@@ -55,7 +64,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "about")
     private String about;
 
-    @Enumerated(EnumType.STRING)
+    /*@Enumerated(EnumType.STRING)
     @Column(name = "dating_purpose", nullable = false)
     private DatingPurpose datingPurpose;
 
@@ -69,7 +78,15 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     private SmokePreference smokePreference;
 
     @Enumerated(EnumType.STRING)
-    private PhysicalActivity physicalActivity;
+    private PhysicalActivity physicalActivity;*/
+
+    @ManyToMany
+    @JoinTable(
+            name = "profile_tag",  // Название промежуточной таблицы
+            joinColumns = @JoinColumn(name = "profile_id"),  // Колонка для profile
+            inverseJoinColumns = @JoinColumn(name = "tag_id")  // Колонка для tag
+    )
+    private Set<TagEntity> tags;
 
     @OneToMany(mappedBy = "profile")
     @ToString.Exclude
