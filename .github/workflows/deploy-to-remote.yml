@@ -19,6 +19,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
           script: |
+            whoami
+            printenv
             export \ 
             POSTGRES_PORT="${{vars.POSTGRES_PORT}}" \
             POSTGRES_DB="${{vars.POSTGRES_DB}}" \
