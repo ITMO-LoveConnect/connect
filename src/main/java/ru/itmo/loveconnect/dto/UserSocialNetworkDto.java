@@ -1,7 +1,7 @@
 package ru.itmo.loveconnect.dto;
 
 import lombok.Value;
-import ru.itmo.loveconnect.entity.enums.SocialNetworkType;
+import ru.itmo.loveconnect.entity.enums.userSocialNetwork.SocialNetworkType;
 
 import java.util.UUID;
 

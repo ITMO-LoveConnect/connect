@@ -1,7 +1,7 @@
 package ru.itmo.loveconnect.dto;
 
 import lombok.Value;
-import ru.itmo.loveconnect.entity.enums.Gender;
+import ru.itmo.loveconnect.entity.enums.profile.Gender;
 
 import java.util.UUID;
 

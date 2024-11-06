@@ -2,14 +2,12 @@ package ru.itmo.loveconnect.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import ru.itmo.loveconnect.entity.enums.Gender;
+import ru.itmo.loveconnect.entity.enums.profile.Gender;
 
 import java.util.UUID;
 

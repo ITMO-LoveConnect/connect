@@ -1,4 +1,4 @@
-package ru.itmo.loveconnect.entity.enums.personal.section;
+package ru.itmo.loveconnect.entity.enums.profile;
 
 public enum RelationshipStatus {
     FREE,
