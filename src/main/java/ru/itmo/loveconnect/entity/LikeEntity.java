@@ -10,13 +10,14 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import ru.itmo.loveconnect.entity.enums.LikeType;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "like")
+@Table(name = "reaction")
 public class LikeEntity extends AbstractPersistable<UUID> {
 
     @ManyToOne
@@ -28,5 +29,9 @@ public class LikeEntity extends AbstractPersistable<UUID> {
     private UserEntity likedBy;
 
     private LikeType type;
+
+    private String message;
+
+    private LocalDateTime viewed;
 
 }
