@@ -17,14 +17,15 @@ jobs:
           host: ${{secrets.REMOTE_HOST}}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
           script: |
             export \ 
-            POSTGRES_PORT=${{vars.POSTGRES_PORT}} \
-            POSTGRES_DB=${{vars.POSTGRES_DB}} \
-            POSTGRES_USER=${{vars.POSTGRES_USER}} \
-            POSTGRES_PASSWORD=${{vars.POSTGRES_PASSWORD}} \
-            MINIO_ACCESS_KEY=${{vars.MINIO_ACCESS_KEY}} \
-            MINIO_SECRET_KEY=${{vars.MINIO_SECRET_KEY}}
+            POSTGRES_PORT="${{vars.POSTGRES_PORT}}" \
+            POSTGRES_DB="${{vars.POSTGRES_DB}}" \
+            POSTGRES_USER="${{vars.POSTGRES_USER}}" \
+            POSTGRES_PASSWORD="${{vars.POSTGRES_PASSWORD}}" \
+            MINIO_ACCESS_KEY="${{vars.MINIO_ACCESS_KEY}}" \
+            MINIO_SECRET_KEY="${{vars.MINIO_SECRET_KEY}}"
       - name: 'Start Docker Compose Deployment'
         uses: FarisZR/docker-compose-gitops-action@v1
         with:
