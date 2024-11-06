@@ -53,7 +53,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "dating_purpose", nullable = false)
     private DatingPurpose datingPurpose;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "profile")
     @ToString.Exclude
     private List<UserSocialNetworkEntity> socialNetworks;
 }
