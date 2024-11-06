@@ -14,7 +14,11 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
+import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
+import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
+import ru.itmo.loveconnect.entity.enums.SmokePreference;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,8 +40,10 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(columnDefinition = "jsonb")
     private List<String> photos;
 
-    @Column(name = "age", nullable = false)
+    @Column(name = "age")
     private Short age;
+
+    private Short height;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id")
@@ -52,6 +58,18 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Enumerated(EnumType.STRING)
     @Column(name = "dating_purpose", nullable = false)
     private DatingPurpose datingPurpose;
+
+    @Enumerated(EnumType.STRING)
+    private RelationshipStatus relationshipStatus;
+
+    @Enumerated(EnumType.STRING)
+    private AlcoholPreference alcoholPreference;
+
+    @Enumerated(EnumType.STRING)
+    private SmokePreference smokePreference;
+
+    @Enumerated(EnumType.STRING)
+    private PhysicalActivity physicalActivity;
 
     @OneToMany(mappedBy = "profile")
     @ToString.Exclude

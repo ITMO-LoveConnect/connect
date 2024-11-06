@@ -3,6 +3,8 @@ spring:
     default: dev
   application:
     name: ITMO LoveConnect
+  flyway:
+    enabled: false
 
   jpa:
     database: postgresql
