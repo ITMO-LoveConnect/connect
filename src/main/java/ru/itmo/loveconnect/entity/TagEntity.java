@@ -24,7 +24,4 @@ public class TagEntity extends AbstractPersistable<UUID> {
     private String name;
 
     private TagCategory category;
-
-    @ManyToMany(mappedBy = "tags")  // Это поле на стороне Profile
-    private Set<ProfileEntity> profiles;  // Сет профилей, которые имеют этот тег
 }

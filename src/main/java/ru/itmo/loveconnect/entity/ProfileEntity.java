@@ -10,19 +10,18 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
 import ru.itmo.loveconnect.entity.enums.Gender;
-import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
-import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
-import ru.itmo.loveconnect.entity.enums.SmokePreference;
+import ru.itmo.loveconnect.entity.enums.personal.section.AlcoholPreference;
+import ru.itmo.loveconnect.entity.enums.personal.section.PhysicalActivity;
+import ru.itmo.loveconnect.entity.enums.personal.section.RelationshipStatus;
+import ru.itmo.loveconnect.entity.enums.personal.section.SmokePreference;
 
 import java.util.List;
 import java.util.Set;
@@ -52,6 +51,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "age")
     private Short age;
 
+    @Column(name = "height")
     private Short height;
 
     @ManyToOne
@@ -64,7 +64,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "about")
     private String about;
 
-    /*@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "dating_purpose", nullable = false)
     private DatingPurpose datingPurpose;
 
@@ -78,7 +78,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     private SmokePreference smokePreference;
 
     @Enumerated(EnumType.STRING)
-    private PhysicalActivity physicalActivity;*/
+    private PhysicalActivity physicalActivity;
 
     @ManyToMany
     @JoinTable(

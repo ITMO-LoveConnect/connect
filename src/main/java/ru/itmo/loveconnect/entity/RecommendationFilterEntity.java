@@ -17,8 +17,8 @@ import java.util.UUID;
 @Setter
 @ToString
 @Entity
-@Table(name = "filter")
-public class FilterEntity extends AbstractPersistable<UUID> {
+@Table(name = "recommendation_filter")
+public class RecommendationFilterEntity extends AbstractPersistable<UUID> {
 
     @Column(name = "min_age")
     private Short minAge;
@@ -26,11 +26,6 @@ public class FilterEntity extends AbstractPersistable<UUID> {
     @Column(name = "max_age")
     private Short maxAge;
 
-    @Column(name = "preferred_gender1", nullable = false)
-    private Gender preferredGender1;
-
-    // Обязательно занулять второй gender, если его нет!
-    @Enumerated(EnumType.STRING)
-    @Column(name = "preferred_gender2", nullable = true)
-    private Gender preferredGender2;
+    @Column(name = "preferred_gender", nullable = true)
+    private Gender preferredGender;
 }
