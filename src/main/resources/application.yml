@@ -3,32 +3,10 @@ spring:
     default: dev
   application:
     name: ITMO LoveConnect
+  flyway:
+    enabled: false
 
   jpa:
     database: postgresql
     hibernate:
       ddl-auto: update
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: dev
-  datasource:
-    url: jdbc:postgresql://localhost:5433/mydatabase
-    username: myuser
-    password: mypassword
-    driverClassName: org.postgresql.Driver
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: prod
-  datasource:
-    url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DB}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
-    driverClassName: org.postgresql.Driver

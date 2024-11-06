@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     ports:
-      - "5433:5432"
+      - "54322:5432"
     networks:
       - mynetwork
 

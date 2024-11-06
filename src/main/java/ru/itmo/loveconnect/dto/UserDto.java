@@ -2,7 +2,7 @@ package ru.itmo.loveconnect.dto;
 
 import lombok.Value;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -14,7 +14,7 @@ public class UserDto {
     String isuNumber;
     String email;
     boolean verified;
-    OffsetDateTime lastLogin;
-    OffsetDateTime lastActive;
-    OffsetDateTime archived;
+    LocalDateTime lastLogin;
+    LocalDateTime lastActive;
+    LocalDateTime archived;
 }

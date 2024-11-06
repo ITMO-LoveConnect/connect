@@ -10,7 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -20,6 +20,7 @@ import java.util.UUID;
 @Table(name = "app_user")
 public class UserEntity extends AbstractPersistable<UUID> {
 
+    @Column(name = "isu_number", unique = true)
     private String isuNumber;
 
     private String email;
@@ -27,11 +28,11 @@ public class UserEntity extends AbstractPersistable<UUID> {
     @Column(nullable = false)
     private Boolean verified = false;
 
-    private OffsetDateTime lastLogin;
+    private LocalDateTime lastLogin;
 
-    private OffsetDateTime lastActive;
+    private LocalDateTime lastActive;
 
-    private OffsetDateTime archived;
+    private LocalDateTime archived;
 
     @OneToOne
     @JoinColumn(name = "profile_id")
