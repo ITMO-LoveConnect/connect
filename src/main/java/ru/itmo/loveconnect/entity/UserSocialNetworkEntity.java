@@ -21,14 +21,14 @@ import java.util.UUID;
         name = "user_social_network",
         uniqueConstraints = {
             @UniqueConstraint(
-                    columnNames = {"user", "type"},
+                    columnNames = {"profile", "type"},
                     name = "user_social_network_user_id_type_unq")
         })
 public class UserSocialNetworkEntity extends AbstractPersistable<UUID> {
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "profile_id")
+    private ProfileEntity profile;
 
     private SocialNetworkType type;
 
