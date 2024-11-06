@@ -19,15 +19,13 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
           script: |
-            whoami
-            printenv
-            export \ 
+            echo \ 
             POSTGRES_PORT="${{vars.POSTGRES_PORT}}" \
             POSTGRES_DB="${{vars.POSTGRES_DB}}" \
             POSTGRES_USER="${{vars.POSTGRES_USER}}" \
             POSTGRES_PASSWORD="${{vars.POSTGRES_PASSWORD}}" \
             MINIO_ACCESS_KEY="${{vars.MINIO_ACCESS_KEY}}" \
-            MINIO_SECRET_KEY="${{vars.MINIO_SECRET_KEY}}"
+            MINIO_SECRET_KEY="${{vars.MINIO_SECRET_KEY}}" > ~/deploy-params.env
       - name: 'Start Docker Compose Deployment'
         uses: FarisZR/docker-compose-gitops-action@v1
         with:
@@ -38,4 +36,4 @@ jobs:
           docker_login_password: ${{secrets.DOCKER_TOKEN}}
           docker_login_user: ${{vars.DOCKER_USER}}
           docker_login_registry: ghcr.io
-          args: --profile prod up -d --force-recreate
+          args: --env-file ~/deploy-params.env --profile prod up -d --force-recreate
