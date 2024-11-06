@@ -1,4 +1,4 @@
-package ru.itmo.loveconnect.entity.enums.profile;
+package ru.itmo.loveconnect.entity.enums;
 
 public enum DatingPurpose {
     FRIENDSHIP,

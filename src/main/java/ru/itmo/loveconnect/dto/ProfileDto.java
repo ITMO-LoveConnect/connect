@@ -1,12 +1,12 @@
 package ru.itmo.loveconnect.dto;
 
 import lombok.Value;
-import ru.itmo.loveconnect.entity.enums.profile.AlcoholPreference;
-import ru.itmo.loveconnect.entity.enums.profile.DatingPurpose;
-import ru.itmo.loveconnect.entity.enums.profile.Gender;
-import ru.itmo.loveconnect.entity.enums.profile.PhysicalActivity;
-import ru.itmo.loveconnect.entity.enums.profile.RelationshipStatus;
-import ru.itmo.loveconnect.entity.enums.profile.SmokePreference;
+import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
+import ru.itmo.loveconnect.entity.enums.DatingPurpose;
+import ru.itmo.loveconnect.entity.enums.Gender;
+import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
+import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
+import ru.itmo.loveconnect.entity.enums.SmokePreference;
 
 import java.util.List;
 import java.util.UUID;

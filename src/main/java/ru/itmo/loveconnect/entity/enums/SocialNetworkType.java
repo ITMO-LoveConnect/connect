@@ -1,4 +1,4 @@
-package ru.itmo.loveconnect.entity.enums.userSocialNetwork;
+package ru.itmo.loveconnect.entity.enums;
 
 public enum SocialNetworkType {
 

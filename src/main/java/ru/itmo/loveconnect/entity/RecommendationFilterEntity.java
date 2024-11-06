@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import ru.itmo.loveconnect.entity.enums.profile.Gender;
+import ru.itmo.loveconnect.entity.enums.Gender;
 
 import java.util.UUID;
 

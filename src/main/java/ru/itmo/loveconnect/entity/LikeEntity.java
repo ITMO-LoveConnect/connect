@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import ru.itmo.loveconnect.entity.enums.like.LikeType;
+import ru.itmo.loveconnect.entity.enums.LikeType;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

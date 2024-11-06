@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import ru.itmo.loveconnect.entity.enums.tag.TagCategory;
+import ru.itmo.loveconnect.entity.enums.TagCategory;
 
 import java.util.UUID;
 

@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import ru.itmo.loveconnect.entity.enums.userSocialNetwork.SocialNetworkType;
+import ru.itmo.loveconnect.entity.enums.SocialNetworkType;
 
 import java.util.UUID;
 
