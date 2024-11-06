@@ -1,3 +1,9 @@
 package ru.itmo.loveconnect.entity.enums;
 
-public enum SmokePreference {}
+public enum SmokePreference {
+    NEVER,
+    RARELY,
+    STOPPING,
+    SMOKE,
+    VAPE
+}

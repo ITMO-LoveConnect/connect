@@ -30,6 +30,7 @@ public class UserEntity extends AbstractPersistable<UUID> {
 
     private LocalDateTime lastLogin;
 
+    @Column(name = "last_active")
     private LocalDateTime lastActive;
 
     private LocalDateTime archived;
@@ -37,4 +38,8 @@ public class UserEntity extends AbstractPersistable<UUID> {
     @OneToOne
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
+
+    @OneToOne
+    @JoinColumn(name = "recommendation_filter_id")
+    private RecommendationFilterEntity recommendationFilter;
 }
