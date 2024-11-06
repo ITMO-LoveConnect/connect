@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v4
-      - name: 'Set or update environment variables on remote'
+      - name: 'Deploy Docker Compose'
         uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{secrets.REMOTE_HOST}}
@@ -19,21 +19,11 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
           script: |
-            echo \ 
+            export \ 
             POSTGRES_PORT="${{vars.POSTGRES_PORT}}" \
             POSTGRES_DB="${{vars.POSTGRES_DB}}" \
             POSTGRES_USER="${{vars.POSTGRES_USER}}" \
             POSTGRES_PASSWORD="${{vars.POSTGRES_PASSWORD}}" \
             MINIO_ACCESS_KEY="${{vars.MINIO_ACCESS_KEY}}" \
-            MINIO_SECRET_KEY="${{vars.MINIO_SECRET_KEY}}" > ~/deploy-params.env
-      - name: 'Start Docker Compose Deployment'
-        uses: FarisZR/docker-compose-gitops-action@v1
-        with:
-          remote_docker_host: ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}}
-          ssh_private_key: ${{secrets.SSH_PRIVATE_KEY}}
-          ssh_public_key: ${{secrets.SSH_PUBLIC_KEY}}
-          compose_file_path: docker/docker-compose.yml
-          docker_login_password: ${{secrets.DOCKER_TOKEN}}
-          docker_login_user: ${{vars.DOCKER_USER}}
-          docker_login_registry: ghcr.io
-          args: --env-file ~/deploy-params.env --profile prod up -d --force-recreate
+            MINIO_SECRET_KEY="${{vars.MINIO_SECRET_KEY}}"
+            docker compose --profile prod up -d --force-recreate
