@@ -1,3 +1,7 @@
 spring:
   application:
     name: ITMO LoveConnect
+
+  jpa:
+    hibernate:
+      ddl-auto: update
