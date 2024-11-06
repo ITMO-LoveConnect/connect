@@ -6,7 +6,17 @@ spring:
   flyway:
     enabled: false
 
+app:
+  mail:
+    smtp-host:
+    smtp-port:
+    smtp-username:
+    smtp-password:
+
   jpa:
     database: postgresql
     hibernate:
       ddl-auto: update
+
+  jwt:
+    secret: 133713371337
