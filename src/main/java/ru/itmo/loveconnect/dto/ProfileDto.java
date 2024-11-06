@@ -1,11 +1,12 @@
 package ru.itmo.loveconnect.dto;
 
 import lombok.Value;
-import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
+import ru.itmo.loveconnect.entity.enums.personal.section.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
-import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
-import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
-import ru.itmo.loveconnect.entity.enums.SmokePreference;
+import ru.itmo.loveconnect.entity.enums.Gender;
+import ru.itmo.loveconnect.entity.enums.personal.section.PhysicalActivity;
+import ru.itmo.loveconnect.entity.enums.personal.section.RelationshipStatus;
+import ru.itmo.loveconnect.entity.enums.personal.section.SmokePreference;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class ProfileDto {
     UUID id;
     String name;
+    Gender gender;
     String avatarUrl;
     List<String> photos;
     Short age;
