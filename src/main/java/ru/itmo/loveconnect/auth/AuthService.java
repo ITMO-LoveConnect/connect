@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itmo.loveconnect.entity.UserEntity;
 import ru.itmo.loveconnect.mail.MailService;
+import ru.itmo.loveconnect.repo.UserRepository;
 import ru.itmo.loveconnect.security.auth.UserToAuthenticatedUserMapper;
 import ru.itmo.loveconnect.security.auth.principal.AuthenticatedUser;
 import ru.itmo.loveconnect.security.jwt.JwtTokenProvider;
@@ -27,6 +28,7 @@ public final class AuthService {
     private final MailService mailService;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserToAuthenticatedUserMapper userToAuthenticatedUserMapper;
+    private final UserRepository userRepository;
 
     public void sendConfirmationCode(Integer isuNumber) {
         if (confirmationCodesCache.getIfPresent(isuNumber) != null) {
@@ -34,7 +36,7 @@ public final class AuthService {
             return;
         }
 
-        String email = isuNumber.toString().concat("@nuiitmo.ru");
+        String email = isuNumber.toString().concat("@niuitmo.ru");
         int otpCode = ThreadLocalRandom
                 .current()
                 .nextInt(1_000_000 - 100_000) + 100_000;
@@ -47,14 +49,20 @@ public final class AuthService {
         }
     }
 
-    public String generateTokenIfOtpCodeValid(Integer isuNumber, Integer otpCode) {
+    public boolean isOtpCodeValid(Integer isuNumber, Integer otpCode) {
+        Integer storedOtpCode = confirmationCodesCache.getIfPresent(isuNumber);
+        return Objects.equals(storedOtpCode, otpCode);
+    }
+
+    public String registerUserIfOtpCodeValid(Integer isuNumber,
+                                             Integer otpCode,
+                                             UserEntity user) {
         Integer storedOtpCode = confirmationCodesCache.getIfPresent(isuNumber);
         if (!Objects.equals(storedOtpCode, otpCode)) {
             throw new IllegalStateException("Illegal otp code");
         }
-        // TODO get or create user
-        UserEntity user = null;
-        AuthenticatedUser principal = userToAuthenticatedUserMapper.map(user);
+        UserEntity registeredUser = userRepository.save(user);
+        AuthenticatedUser principal = userToAuthenticatedUserMapper.map(registeredUser);
         return jwtTokenProvider.generate(principal);
     }
 
