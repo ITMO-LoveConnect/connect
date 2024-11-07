@@ -51,10 +51,10 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
 
     implementation "io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceVersion}"
-    compileOnly 'org.projectlombok:lombok'
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
