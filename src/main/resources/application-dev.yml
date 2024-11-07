@@ -5,4 +5,4 @@ spring:
     password: mypassword
     driverClassName: org.postgresql.Driver
 app:
-  init-db: false
+  init-db: true

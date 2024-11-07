@@ -42,6 +42,6 @@ public class LikeEntity extends AbstractPersistable<UUID> {
 
     private LocalDateTime viewed;
 
-    @Column(nullable = false)
+    @Column(name = "liked_time", nullable = false)
     private LocalDateTime likedTime;
 }

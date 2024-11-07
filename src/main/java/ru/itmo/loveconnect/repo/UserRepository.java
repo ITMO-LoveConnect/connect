@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
             "WHERE r.id IS NULL " + // Пользователь не был лайкнут userId
             "    AND (function('AGE', :timeNow, u.lastActive) < :maxLastActiveDays) " + // Фильтрация по времени активности
             "    AND (f.preferredGender IS NULL OR p.gender = f.preferredGender) " + // Фильтрация по предпочтению пола
-            "    AND p.age BETWEEN f.minAge AND f.maxAge " + // Фильтрация по возрасту
+            "    AND p.birthDay BETWEEN f.minBirthDay AND f.maxBirthDay " + // Фильтрация по возрасту
             "ORDER BY u.lastActive DESC " + // Сортировка по времени последней активности
             "LIMIT :numberOfUsers")
     List<UserEntity> getRecommendationsByUserId(@Param("userId") UUID userId,
