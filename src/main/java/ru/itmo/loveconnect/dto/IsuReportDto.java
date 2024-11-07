@@ -1,6 +1,7 @@
 package ru.itmo.loveconnect.dto;
 
 import lombok.Value;
+import ru.itmo.loveconnect.entity.enums.Gender;
 
 @Value
 public class IsuReportDto {
@@ -9,8 +10,4 @@ public class IsuReportDto {
     String facultyName;
     String group;
     String course;
-
-    public enum Gender {
-        MALE, FEMALE
-    }
 }

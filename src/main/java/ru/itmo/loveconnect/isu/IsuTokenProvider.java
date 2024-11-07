@@ -1,6 +1,7 @@
 package ru.itmo.loveconnect.isu;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,7 +27,12 @@ public class IsuTokenProvider {
 
     @Scheduled(fixedRate = 10, timeUnit = TimeUnit.MINUTES)
     public void updateAccessToken() {
-        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        doUpdate();
+    }
+
+    @PostConstruct
+    private void doUpdate() {
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
         map.add("grant_type", "refresh_token");
         map.add("client_id", "student-personal-cabinet");
         map.add("refresh_token", refreshToken);

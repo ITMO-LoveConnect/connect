@@ -1,6 +1,7 @@
 package ru.itmo.loveconnect.dto;
 
-import lombok.Value;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
 import ru.itmo.loveconnect.entity.enums.Gender;

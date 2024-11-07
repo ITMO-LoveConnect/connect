@@ -1,16 +1,7 @@
 package ru.itmo.loveconnect.entity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -54,7 +45,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "height")
     private Short height;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
 
@@ -80,7 +71,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Enumerated(EnumType.STRING)
     private PhysicalActivity physicalActivity;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "profile_tag",  // Название промежуточной таблицы
             joinColumns = @JoinColumn(name = "profile_id"),  // Колонка для profile
@@ -88,7 +79,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     )
     private Set<TagEntity> tags;
 
-    @OneToMany(mappedBy = "profile")
+    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<UserSocialNetworkEntity> socialNetworks;
 }
