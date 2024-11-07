@@ -9,6 +9,7 @@ import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
 import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
 import ru.itmo.loveconnect.entity.enums.SmokePreference;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class ProfileDto {
     Gender gender;
     String avatarUrl;
     List<String> photos;
-    Short age;
+    LocalDate birthDay;
     FacultyDto faculty;
     Short course;
     String about;

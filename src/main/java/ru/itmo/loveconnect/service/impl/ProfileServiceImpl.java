@@ -5,6 +5,7 @@ import java.util.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import ru.itmo.loveconnect.entity.ProfileEntity;
+import ru.itmo.loveconnect.entity.UserEntity;
 import ru.itmo.loveconnect.repo.ProfileRepository;
 import ru.itmo.loveconnect.service.ProfileService;
 
@@ -17,11 +18,12 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public ProfileEntity getProfile(String uuid) {
-        return profileRepository.getReferenceById(UUID.fromString(uuid));
+        return profileRepository.findById(UUID.fromString(uuid)).orElseThrow();
     }
 
     @Override
-    public UUID createProfile(ProfileEntity entity) {
+    public UUID createProfile(ProfileEntity entity, UserEntity user) {
+        entity.setUser(user);
         return profileRepository.save(entity).getId();
     }
 

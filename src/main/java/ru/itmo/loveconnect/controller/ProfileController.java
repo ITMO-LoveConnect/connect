@@ -1,6 +1,7 @@
 package ru.itmo.loveconnect.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.itmo.loveconnect.dto.ProfileDto;
 import ru.itmo.loveconnect.entity.ProfileEntity;
+import ru.itmo.loveconnect.entity.UserEntity;
 import ru.itmo.loveconnect.entity.mapper.ProfileMapper;
+import ru.itmo.loveconnect.security.auth.principal.AuthenticatedUser;
 import ru.itmo.loveconnect.service.ProfileService;
+import ru.itmo.loveconnect.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class ProfileController {
     private final ProfileMapper mapper;
     private final ProfileService profileService;
+    private final UserService userService;
 
     @GetMapping("/{uuid}")
     public ProfileDto getProfile(@PathVariable("uuid") String uuid) {
@@ -30,8 +35,9 @@ public class ProfileController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createProfile(@RequestBody ProfileDto profileDto) {
-        return profileService.createProfile(mapper.toEntity(profileDto)).toString();
+    public String createProfile(@RequestBody ProfileDto profileDto, @AuthenticationPrincipal AuthenticatedUser authUser) {
+        UserEntity user = userService.getUserById(authUser.getUserId());
+        return profileService.createProfile(mapper.toEntity(profileDto), user).toString();
     }
 
     @PatchMapping("/{uuid}")
