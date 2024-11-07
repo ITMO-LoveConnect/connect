@@ -45,7 +45,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                                .requestMatchers("/user/**")
+                                .requestMatchers("/user/**", "/photo/**")
                                 .hasAuthority(CustomAuthority.USER.getAuthority())
                                 .requestMatchers("/")
                                 .permitAll()

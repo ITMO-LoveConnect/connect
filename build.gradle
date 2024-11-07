@@ -29,6 +29,7 @@ ext {
     lombokMapstructBindingVersion = "0.2.0"
     hypersistenceVersion = "3.8.3"
     jjwtVersion = "0.11.5"
+    minioVersion = "8.5.13"
     springdocVersion = "2.6.0"
 }
 
@@ -50,6 +51,7 @@ dependencies {
     compileOnly "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+    implementation "io.minio:minio:$minioVersion"
 
     implementation "io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceVersion}"
     compileOnly "org.projectlombok:lombok:${lombokVersion}"

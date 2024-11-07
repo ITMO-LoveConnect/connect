@@ -1,6 +1,9 @@
 package ru.itmo.loveconnect.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
+@RequestMapping("/user")
 @RestController
+@RequiredArgsConstructor
 public class UserController {}
