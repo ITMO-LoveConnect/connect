@@ -36,7 +36,8 @@ public class WebSecurityConfig {
             "/swagger-ui/**",
             // other public endpoints
             "/auth/**",
-            "/tag"
+            "/tag",
+            "/photo/**"
     };
 
     @Bean
@@ -45,7 +46,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                                .requestMatchers("/user/**", "/photo/**")
+                                .requestMatchers("/user/**")
                                 .hasAuthority(CustomAuthority.USER.getAuthority())
                                 .requestMatchers("/")
                                 .permitAll()
