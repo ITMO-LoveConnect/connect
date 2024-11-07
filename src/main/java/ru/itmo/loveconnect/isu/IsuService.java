@@ -6,7 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import ru.itmo.loveconnect.dto.IsuReportDto;
-import ru.itmo.loveconnect.dto.IsuReportDto.Gender;
+import ru.itmo.loveconnect.entity.enums.Gender;
 
 @Service
 @RequiredArgsConstructor
