@@ -19,5 +19,7 @@ public class TagEntity extends AbstractPersistable<UUID> {
 
     private String name;
 
+    private String emoji;
+
     private TagCategory category;
 }
