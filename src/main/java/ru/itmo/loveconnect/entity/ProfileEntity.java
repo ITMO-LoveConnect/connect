@@ -60,7 +60,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "height")
     private Short height;
 
-    @ManyToOne(cascade= { CascadeType. })
+    @ManyToOne(cascade= { CascadeType.ALL })
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
 
