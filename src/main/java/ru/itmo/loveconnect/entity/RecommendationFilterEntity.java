@@ -19,11 +19,11 @@ import java.util.UUID;
 @Table(name = "recommendation_filter")
 public class RecommendationFilterEntity extends AbstractPersistable<UUID> {
 
-    @Column(name = "min_birth_day")
-    private LocalDate minBirthDay;
+    @Column(name = "min_age")
+    private Short minAge;
 
-    @Column(name = "max_birth_day")
-    private LocalDate maxBirthDay;
+    @Column(name = "max_age")
+    private Short maxAge;
 
     @Column(name = "preferred_gender")
     private Gender preferredGender;
