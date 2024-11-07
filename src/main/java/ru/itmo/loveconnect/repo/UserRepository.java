@@ -7,6 +7,7 @@ import ru.itmo.loveconnect.entity.UserEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
@@ -25,4 +26,6 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
                                                 @Param("timeNow") LocalDateTime timeNow,
                                                 @Param("maxLastActiveDays") Short maxLastActiveDays,
                                                 @Param("numberOfUsers") int numberOfUsers);
+
+    Optional<UserEntity> findByIsuNumber(final String isuNumber);
 }
