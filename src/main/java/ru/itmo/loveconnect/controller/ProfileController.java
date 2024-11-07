@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.itmo.loveconnect.dto.ProfileDto;
 import ru.itmo.loveconnect.entity.ProfileEntity;
 import ru.itmo.loveconnect.entity.mapper.ProfileMapper;
-import ru.itmo.loveconnect.entity.mapper.ProfileMapperImpl;
 import ru.itmo.loveconnect.service.ProfileService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,24 +20,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/profile")
 public class ProfileController {
-    private static final ProfileMapper MAPPER = new ProfileMapperImpl();
+    private final ProfileMapper mapper;
     private final ProfileService profileService;
 
     @GetMapping("/{uuid}")
     public ProfileDto getProfile(@PathVariable("uuid") String uuid) {
-        return MAPPER.toDto(profileService.getProfile(uuid));
+        return mapper.toDto(profileService.getProfile(uuid));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String createProfile(@RequestBody ProfileDto profileDto) {
-        return profileService.createProfile(MAPPER.toEntity(profileDto)).toString();
+        return profileService.createProfile(mapper.toEntity(profileDto)).toString();
     }
 
     @PatchMapping("/{uuid}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateProfile(@PathVariable("uuid") String uuid, @RequestBody ProfileDto profileDto) {
-        ProfileEntity updatedEntity = MAPPER.toEntity(profileDto);
+        ProfileEntity updatedEntity = mapper.toEntity(profileDto);
         profileService.updateProfile(uuid, updatedEntity);
     }
 }
