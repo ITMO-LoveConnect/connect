@@ -23,7 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public void updateProfile(String uuid, ProfileEntity updatedProfile) {
-        ProfileEntity toUpdate = profileRepository.getReferenceById(UUID.fromString(uuid));
+        ProfileEntity toUpdate = profileRepository.findById(UUID.fromString(uuid)).orElseThrow();
         BeanUtils.copyProperties(updatedProfile, toUpdate);
         profileRepository.save(toUpdate);
     }
