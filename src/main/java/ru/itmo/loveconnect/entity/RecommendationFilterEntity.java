@@ -2,6 +2,8 @@ package ru.itmo.loveconnect.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +26,7 @@ public class RecommendationFilterEntity extends AbstractPersistable<UUID> {
     @Column(name = "max_age")
     private Short maxAge;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "preferred_gender", nullable = true)
     private Gender preferredGender;
 }
