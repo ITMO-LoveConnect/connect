@@ -1,7 +1,6 @@
 package ru.itmo.loveconnect.entity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,9 +17,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
 import ru.itmo.loveconnect.entity.enums.Gender;
-import ru.itmo.loveconnect.entity.enums.AlcoholPreference;
 import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
 import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
 import ru.itmo.loveconnect.entity.enums.SmokePreference;
@@ -60,7 +59,7 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(name = "height")
     private Short height;
 
-    @ManyToOne(cascade= { CascadeType.ALL })
+    @ManyToOne
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
 

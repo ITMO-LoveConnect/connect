@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import ru.itmo.loveconnect.dto.ProfileDto;
 import ru.itmo.loveconnect.entity.UserEntity;
 import ru.itmo.loveconnect.entity.mapper.ProfileMapper;
-import ru.itmo.loveconnect.entity.mapper.ProfileMapperImpl;
 import ru.itmo.loveconnect.mail.MailService;
 import ru.itmo.loveconnect.repo.UserRepository;
 import ru.itmo.loveconnect.security.auth.UserToAuthenticatedUserMapper;

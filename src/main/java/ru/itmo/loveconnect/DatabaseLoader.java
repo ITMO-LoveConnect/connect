@@ -846,12 +846,6 @@ public class DatabaseLoader {
             tagRepository.save(tagBlues);
             tagRepository.save(tagMusicLover);
 
-            // adding profiles
-            profileRepository.save(profileElonMusk);
-            profileRepository.save(profileElonMusk1);
-            profileRepository.save(profileElonMusk2);
-            profileRepository.save(profileElonMusk3);
-            profileRepository.save(profileElonMusk4);
             // adding filters
             recommendationFilterRepository.save(recommendationFilterElonMusk);
             recommendationFilterRepository.save(recommendationFilterElonMusk1);
