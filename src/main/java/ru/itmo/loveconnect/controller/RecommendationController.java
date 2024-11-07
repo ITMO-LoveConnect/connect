@@ -2,8 +2,12 @@ package ru.itmo.loveconnect.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.itmo.loveconnect.dto.GetRecommendationDto;
 import ru.itmo.loveconnect.service.RecommendationService;
@@ -18,15 +22,21 @@ public class RecommendationController {
 
     private final RecommendationService recommendationService;
 
-    @RequestMapping("/{userId}/{maxLastActiveDays}/{numberOfUsers}")
-    public ResponseEntity<List<GetRecommendationDto>> getRecommendations(@PathVariable UUID userId,
-                                                                         @PathVariable Short maxLastActiveDays,
-                                                                         @PathVariable Integer numberOfUsers) {
+    @GetMapping()
+    public ResponseEntity<List<GetRecommendationDto>> getRecommendations(@RequestParam Short maxLastActiveDays,
+                                                                         @RequestParam Integer numberOfUsers) {
+        UUID userId = getCurrentUserId();
         return ResponseEntity.ok(
                 recommendationService.getRecommendationsByUserId(
                 userId,
                 maxLastActiveDays,
                 numberOfUsers)
         );
+    }
+
+    private UUID getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userIdStr = authentication.getName(); // Используйте getName, если userId — это subject
+        return UUID.fromString(userIdStr);
     }
 }
