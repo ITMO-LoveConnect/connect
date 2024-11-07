@@ -2,9 +2,19 @@ package ru.itmo.loveconnect.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import ru.itmo.loveconnect.auth.AuthService;
-import ru.itmo.loveconnect.dto.*;
+import ru.itmo.loveconnect.dto.IsRegisteredDto;
+import ru.itmo.loveconnect.dto.LoginDto;
+import ru.itmo.loveconnect.dto.RegisterDto;
+import ru.itmo.loveconnect.dto.RequestPrefilledProfileDto;
+import ru.itmo.loveconnect.dto.SendConfirmationDto;
+import ru.itmo.loveconnect.dto.TokenDto;
 import ru.itmo.loveconnect.isu.IsuService;
 import ru.itmo.loveconnect.service.impl.UserServiceImpl;
 

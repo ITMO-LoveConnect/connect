@@ -12,5 +12,5 @@ import java.util.UUID;
 public class UserSocialNetworkDto {
     UUID id;
     SocialNetworkType type;
-    String profileId;
+    String externalId;
 }
