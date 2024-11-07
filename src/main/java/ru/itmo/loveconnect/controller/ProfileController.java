@@ -26,19 +26,10 @@ import lombok.RequiredArgsConstructor;
 public class ProfileController {
     private final ProfileMapper mapper;
     private final ProfileService profileService;
-    private final UserService userService;
 
     @GetMapping("/{uuid}")
     public ProfileDto getProfile(@PathVariable("uuid") String uuid) {
         return mapper.toDto(profileService.getProfile(uuid));
-    }
-
-    @Deprecated
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public String createProfile(@RequestBody ProfileDto profileDto, @AuthenticationPrincipal AuthenticatedUser authUser) {
-        UserEntity user = userService.getUserById(authUser.getUserId());
-        return profileService.createProfile(mapper.toEntity(profileDto), user).toString();
     }
 
     @PatchMapping("/{uuid}")

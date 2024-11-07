@@ -22,12 +22,6 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public UUID createProfile(ProfileEntity entity, UserEntity user) {
-        entity.setUser(user);
-        return profileRepository.save(entity).getId();
-    }
-
-    @Override
     public void updateProfile(String uuid, ProfileEntity updatedProfile) {
         ProfileEntity toUpdate = profileRepository.getReferenceById(UUID.fromString(uuid));
         BeanUtils.copyProperties(updatedProfile, toUpdate);
