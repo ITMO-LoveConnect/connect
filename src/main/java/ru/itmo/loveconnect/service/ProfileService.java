@@ -8,6 +8,7 @@ import ru.itmo.loveconnect.entity.UserEntity;
 public interface ProfileService {
     ProfileEntity getProfile(String uuid);
 
+    @Deprecated
     UUID createProfile(ProfileEntity entity, UserEntity user);
 
     void updateProfile(String uuid, ProfileEntity entity);

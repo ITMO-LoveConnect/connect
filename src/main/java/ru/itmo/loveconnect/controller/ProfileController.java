@@ -33,6 +33,7 @@ public class ProfileController {
         return mapper.toDto(profileService.getProfile(uuid));
     }
 
+    @Deprecated
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String createProfile(@RequestBody ProfileDto profileDto, @AuthenticationPrincipal AuthenticatedUser authUser) {
