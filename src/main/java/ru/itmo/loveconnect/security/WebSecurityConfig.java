@@ -27,7 +27,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorize ->
                         authorize
-                                .requestMatchers("/auth/**").permitAll()
+                                .requestMatchers("/auth/**", "/tag").permitAll()
                                 .requestMatchers("/user/**")
                                 .hasAuthority(CustomAuthority.USER.getAuthority())
                                 .requestMatchers("/")
