@@ -1,8 +1,10 @@
 package ru.itmo.loveconnect;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.itmo.loveconnect.entity.FacultyEntity;
 import ru.itmo.loveconnect.entity.ProfileEntity;
 import ru.itmo.loveconnect.entity.RecommendationFilterEntity;
 import ru.itmo.loveconnect.entity.TagEntity;
@@ -10,6 +12,11 @@ import ru.itmo.loveconnect.entity.UserEntity;
 import ru.itmo.loveconnect.entity.enums.DatingPurpose;
 import ru.itmo.loveconnect.entity.enums.Gender;
 import ru.itmo.loveconnect.entity.enums.TagCategory;
+import ru.itmo.loveconnect.entity.enums.personal.section.AlcoholPreference;
+import ru.itmo.loveconnect.entity.enums.personal.section.PhysicalActivity;
+import ru.itmo.loveconnect.entity.enums.personal.section.RelationshipStatus;
+import ru.itmo.loveconnect.entity.enums.personal.section.SmokePreference;
+import ru.itmo.loveconnect.repo.FacultyRepository;
 import ru.itmo.loveconnect.repo.ProfileRepository;
 import ru.itmo.loveconnect.repo.RecommendationFilterRepository;
 import ru.itmo.loveconnect.repo.TagRepository;
@@ -20,15 +27,44 @@ import java.util.Set;
 @Configuration
 public class DatabaseLoader {
     @Bean
+    @ConditionalOnProperty(name = "app.init-db", havingValue = "true")
     CommandLineRunner init(UserRepository userRepository,
                            ProfileRepository profileRepository,
+                           FacultyRepository facultyRepository,
                            RecommendationFilterRepository recommendationFilterRepository,
                            TagRepository tagRepository) {
+        // creating Faculty
+        FacultyEntity faculty1 = new FacultyEntity();
+        faculty1.setShortName("Мегафакультет компьютерных технологий и управления");
+        FacultyEntity faculty2 = new FacultyEntity();
+        faculty2.setShortName("Физико-технический мегафакультет");
+        FacultyEntity faculty3 = new FacultyEntity();
+        faculty3.setShortName("Мегафакультет трансляционных информационных технологий");
+        FacultyEntity faculty4 = new FacultyEntity();
+        faculty4.setShortName("Мегафакультет наук о жизни");
+        FacultyEntity faculty5 = new FacultyEntity();
+        faculty5.setShortName("Институт международного развития и партнерства");
+        FacultyEntity faculty6 = new FacultyEntity();
+        faculty6.setShortName("Факультет технологического менеджмента и инноваций");
+        FacultyEntity faculty7 = new FacultyEntity();
+        faculty7.setShortName("Институт \"Высшая инженерно-техническая школа\"");
+        FacultyEntity faculty8 = new FacultyEntity();
+        faculty8.setShortName("Образовательный центр \"Энергоэффективные инженерные системы\"");
+
         // creating Profiles
         ProfileEntity profileElonMusk = new ProfileEntity();
         profileElonMusk.setName("Elon");
         profileElonMusk.setGender(Gender.MALE);
+        profileElonMusk.setAge((short) 53);
+        profileElonMusk.setHeight((short) 188);
+        profileElonMusk.setFaculty(faculty2);
+        profileElonMusk.setCourse((short) 4);
+        profileElonMusk.setAbout("Привет, меня зовут Илон Маск. Я инженер, предприниматель и мечтатель, посвятивший жизнь созданию технологий, которые могут изменить будущее человечества.");
         profileElonMusk.setDatingPurpose(DatingPurpose.FREERELATIONSHIP);
+        profileElonMusk.setRelationshipStatus(RelationshipStatus.COMPLICATED);
+        profileElonMusk.setAlcoholPreference(AlcoholPreference.RARELY);
+        profileElonMusk.setSmokePreference(SmokePreference.SMOKE);
+        profileElonMusk.setPhysicalActivity(PhysicalActivity.DONTLIKESPORTS);
 
         // creating RecommendationFilter
         RecommendationFilterEntity recommendationFilterElonMusk = new RecommendationFilterEntity();
@@ -64,11 +100,23 @@ public class DatabaseLoader {
 
         // creating Users
         UserEntity userElonMusk = new UserEntity();
+        userElonMusk.setEmail("elonmusk@gmail.com");
+        userElonMusk.setVerified(false);
         userElonMusk.setProfile(profileElonMusk);
         userElonMusk.setRecommendationFilter(recommendationFilterElonMusk);
 
         return args -> {
-            // adding tagRepository
+            // adding faculties
+            facultyRepository.save(faculty1);
+            facultyRepository.save(faculty2);
+            facultyRepository.save(faculty3);
+            facultyRepository.save(faculty4);
+            facultyRepository.save(faculty5);
+            facultyRepository.save(faculty6);
+            facultyRepository.save(faculty7);
+            facultyRepository.save(faculty8);
+
+            // adding tags
             tagRepository.save(tagPhoto);
             tagRepository.save(tagVideoShooting);
             tagRepository.save(tagDesign);
