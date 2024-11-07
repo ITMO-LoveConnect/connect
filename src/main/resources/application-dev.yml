@@ -6,3 +6,4 @@ spring:
     driverClassName: org.postgresql.Driver
 app:
   init-db: true
+

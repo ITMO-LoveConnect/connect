@@ -14,10 +14,10 @@ app:
   isu-refresh-token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJjNTcxMzVjYy01ZjEwLTQ4ZTAtYTU5ZS1lYTYwMmY3ZTcxYzAifQ.eyJleHAiOjE3MzM1MDM0MTQsImlhdCI6MTczMDkxMTQxNCwianRpIjoiYTQ2NDIxZDMtZDRiYS00ZTZlLWJhOWUtNTJkMDMzMWE0MWU1IiwiaXNzIjoiaHR0cHM6Ly9pZC5pdG1vLnJ1L2F1dGgvcmVhbG1zL2l0bW8iLCJhdWQiOiJodHRwczovL2lkLml0bW8ucnUvYXV0aC9yZWFsbXMvaXRtbyIsInN1YiI6Ijk5NjExZGMxLWEyMjEtNDEzYy1iOGUxLWRkMjMyZDU3ZjZiZSIsInR5cCI6IlJlZnJlc2giLCJhenAiOiJzdHVkZW50LXBlcnNvbmFsLWNhYmluZXQiLCJzZXNzaW9uX3N0YXRlIjoiM2JjOTI0ZTYtZDQ3ZS00NThjLThhZWYtNmQzMmI1YmY1Yjg5Iiwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSBlZHUgd29yayIsInNpZCI6IjNiYzkyNGU2LWQ0N2UtNDU4Yy04YWVmLTZkMzJiNWJmNWI4OSJ9.D0IUOI1bUmXXI7jXyPFUsU9-p5rB_ARejwSwA7B-fsE
 
   mail:
-    smtp-host: 127.0.0.1
-    smtp-port: 69
-    smtp-username: user
-    smtp-password: user
+    smtp-host: smtp.yandex.ru
+    smtp-port: 587
+    smtp-username: itmoevitch@yandex.ru
+    smtp-password: wrrrlagvsgcbwrpo
 
   jwt:
-    secret: 133713371337
+    secret: 133713371337133713371337133713371337133713371337133713371337133713371337

@@ -72,7 +72,7 @@ public class DatabaseLoader {
             ProfileEntity profileElonMusk = new ProfileEntity();
             profileElonMusk.setName("Elon");
             profileElonMusk.setGender(Gender.MALE);
-            profileElonMusk.setAge((short) 53);
+            profileElonMusk.setBirthDay(LocalDate.of(1971, Month.JUNE, 17));
             profileElonMusk.setHeight((short) 188);
             profileElonMusk.setFaculty(faculty2);
             profileElonMusk.setCourse((short) 4);
@@ -86,7 +86,7 @@ public class DatabaseLoader {
             ProfileEntity profileElonMusk1 = new ProfileEntity();
             profileElonMusk1.setName("Elon");
             profileElonMusk1.setGender(Gender.MALE);
-            profileElonMusk1.setAge((short) 53);
+            profileElonMusk1.setBirthDay(LocalDate.of(1971, Month.JUNE, 17));
             profileElonMusk1.setHeight((short) 188);
             profileElonMusk1.setFaculty(faculty2);
             profileElonMusk1.setCourse((short) 4);
@@ -100,7 +100,7 @@ public class DatabaseLoader {
             ProfileEntity profileElonMusk2 = new ProfileEntity();
             profileElonMusk2.setName("Elon");
             profileElonMusk2.setGender(Gender.MALE);
-            profileElonMusk2.setAge((short) 53);
+            profileElonMusk2.setBirthDay(LocalDate.of(1971, Month.JUNE, 17));
             profileElonMusk2.setHeight((short) 188);
             profileElonMusk2.setFaculty(faculty2);
             profileElonMusk2.setCourse((short) 4);
@@ -114,7 +114,7 @@ public class DatabaseLoader {
             ProfileEntity profileElonMusk3 = new ProfileEntity();
             profileElonMusk3.setName("Elon");
             profileElonMusk3.setGender(Gender.MALE);
-            profileElonMusk3.setAge((short) 53);
+            profileElonMusk3.setBirthDay(LocalDate.of(1971, Month.JUNE, 17));
             profileElonMusk3.setHeight((short) 188);
             profileElonMusk3.setFaculty(faculty2);
             profileElonMusk3.setCourse((short) 4);
@@ -128,7 +128,7 @@ public class DatabaseLoader {
             ProfileEntity profileElonMusk4 = new ProfileEntity();
             profileElonMusk4.setName("Elon");
             profileElonMusk4.setGender(Gender.MALE);
-            profileElonMusk4.setAge((short) 53);
+            profileElonMusk4.setBirthDay(LocalDate.of(1971, Month.JUNE, 17));
             profileElonMusk4.setHeight((short) 188);
             profileElonMusk4.setFaculty(faculty2);
             profileElonMusk4.setCourse((short) 4);
@@ -755,6 +755,7 @@ public class DatabaseLoader {
             tagRepository.save(tagSinging);
             tagRepository.save(tagBlogging);
             tagRepository.save(tagDrawing);
+            tagRepository.save(tagMusicArt);
 
             tagRepository.save(tagRunning);
             tagRepository.save(tagFitness);
@@ -859,12 +860,6 @@ public class DatabaseLoader {
             tagRepository.save(tagBlues);
             tagRepository.save(tagMusicLover);
 
-            // adding profiles
-            profileRepository.save(profileElonMusk);
-            profileRepository.save(profileElonMusk1);
-            profileRepository.save(profileElonMusk2);
-            profileRepository.save(profileElonMusk3);
-            profileRepository.save(profileElonMusk4);
             // adding filters
             recommendationFilterRepository.save(recommendationFilterElonMusk);
             recommendationFilterRepository.save(recommendationFilterElonMusk1);

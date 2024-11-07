@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
         final Optional<UserEntity> user = userRepository.findByIsuNumber(login);
         return user.orElseThrow();
     }
+
+    public Boolean isRegisteredByIsuNumber(String isuNumber) {
+        return userRepository.findByIsuNumber(isuNumber).isPresent();
+    }
+
 }

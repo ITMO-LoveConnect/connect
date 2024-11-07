@@ -1,5 +1,6 @@
 package ru.itmo.loveconnect.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -35,7 +36,7 @@ public class UserEntity extends AbstractPersistable<UUID> {
 
     private LocalDateTime archived;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "profile_id")
     private ProfileEntity profile;
 

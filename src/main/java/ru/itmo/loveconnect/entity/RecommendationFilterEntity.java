@@ -11,6 +11,7 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import ru.itmo.loveconnect.entity.enums.Gender;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
