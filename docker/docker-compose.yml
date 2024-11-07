@@ -61,7 +61,8 @@ services:
   prod_app:
     image: ghcr.io/itmo-loveconnect/connect:latest
     pull_policy: always
-    command: -Dspring.profiles.active=prod
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
     profiles:
       - prod
     depends_on:
