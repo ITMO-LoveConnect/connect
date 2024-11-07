@@ -11,9 +11,9 @@ import ru.itmo.loveconnect.entity.FacultyEntity;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface FacultyMapper {
-    FacultyEntity toEntity(FacultyDto profileDto);
+    FacultyEntity toEntity(FacultyDto facultyDto);
 
-    FacultyDto toDto(FacultyEntity profileEntity);
+    FacultyDto toDto(FacultyEntity facultyEntity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     FacultyEntity partialUpdate(FacultyDto facultyDto, @MappingTarget FacultyEntity facultyEntity);
