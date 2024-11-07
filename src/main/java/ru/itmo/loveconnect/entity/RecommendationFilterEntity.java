@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import ru.itmo.loveconnect.entity.enums.Gender;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -24,6 +25,6 @@ public class RecommendationFilterEntity extends AbstractPersistable<UUID> {
     @Column(name = "max_age")
     private Short maxAge;
 
-    @Column(name = "preferred_gender", nullable = true)
+    @Column(name = "preferred_gender")
     private Gender preferredGender;
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itmo.loveconnect.dto.ProfileDto;
 import ru.itmo.loveconnect.entity.UserEntity;
+import ru.itmo.loveconnect.entity.mapper.ProfileMapper;
 import ru.itmo.loveconnect.entity.mapper.ProfileMapperImpl;
 import ru.itmo.loveconnect.mail.MailService;
 import ru.itmo.loveconnect.repo.UserRepository;
@@ -32,7 +33,7 @@ public final class AuthService {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserToAuthenticatedUserMapper userToAuthenticatedUserMapper;
     private final UserRepository userRepository;
-    private final ProfileMapperImpl profileMapperImpl;
+    private final ProfileMapper profileMapper;
 
     public void sendConfirmationCode(String isuNumber) {
         if (confirmationCodesCache.getIfPresent(isuNumber) != null) {
@@ -80,7 +81,7 @@ public final class AuthService {
         UserEntity user = new UserEntity();
         user.setIsuNumber(isuNumber);
         user.setEmail(isuNumber + "@niuitmo.ru");
-        user.setProfile(profileMapperImpl.toEntity(profile));
+        user.setProfile(profileMapper.toEntity(profile));
         user.setLastLogin(LocalDateTime.now());
         user.setLastActive(LocalDateTime.now());
         user.setVerified(true);

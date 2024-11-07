@@ -1,7 +1,18 @@
 package ru.itmo.loveconnect.entity;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +25,7 @@ import ru.itmo.loveconnect.entity.enums.PhysicalActivity;
 import ru.itmo.loveconnect.entity.enums.RelationshipStatus;
 import ru.itmo.loveconnect.entity.enums.SmokePreference;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -24,6 +36,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "profile")
 public class ProfileEntity extends AbstractPersistable<UUID> {
+
+    @OneToOne(mappedBy = "profile")
+    private UserEntity user;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -39,13 +54,13 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Column(columnDefinition = "jsonb")
     private List<String> photos;
 
-    @Column(name = "age")
-    private Short age;
+    @Column(name = "birth_day")
+    private LocalDate birthDay;
 
     @Column(name = "height")
     private Short height;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade= { CascadeType.ALL })
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
 
