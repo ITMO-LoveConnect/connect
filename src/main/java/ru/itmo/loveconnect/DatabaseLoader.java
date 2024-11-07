@@ -82,8 +82,68 @@ public class DatabaseLoader {
             profileElonMusk.setSmokePreference(SmokePreference.SMOKE);
             profileElonMusk.setPhysicalActivity(PhysicalActivity.HATER);
 
+            ProfileEntity profileElonMusk1 = new ProfileEntity();
+            profileElonMusk1.setName("Elon");
+            profileElonMusk1.setGender(Gender.MALE);
+            profileElonMusk1.setAge((short) 53);
+            profileElonMusk1.setHeight((short) 188);
+            profileElonMusk1.setFaculty(faculty2);
+            profileElonMusk1.setCourse((short) 4);
+            profileElonMusk1.setAbout("Привет, меня зовут Илон Маск. Я инженер, предприниматель и мечтатель, посвятивший жизнь созданию технологий, которые могут изменить будущее человечества.");
+            profileElonMusk1.setDatingPurpose(DatingPurpose.NEW_EXPRESSION);
+            profileElonMusk1.setRelationshipStatus(RelationshipStatus.COMPLICATED);
+            profileElonMusk1.setAlcoholPreference(AlcoholPreference.RARELY);
+            profileElonMusk1.setSmokePreference(SmokePreference.SMOKE);
+            profileElonMusk1.setPhysicalActivity(PhysicalActivity.HATER);
+
+            ProfileEntity profileElonMusk2 = new ProfileEntity();
+            profileElonMusk2.setName("Elon");
+            profileElonMusk2.setGender(Gender.MALE);
+            profileElonMusk2.setAge((short) 53);
+            profileElonMusk2.setHeight((short) 188);
+            profileElonMusk2.setFaculty(faculty2);
+            profileElonMusk2.setCourse((short) 4);
+            profileElonMusk2.setAbout("Привет, меня зовут Илон Маск. Я инженер, предприниматель и мечтатель, посвятивший жизнь созданию технологий, которые могут изменить будущее человечества.");
+            profileElonMusk2.setDatingPurpose(DatingPurpose.NEW_EXPRESSION);
+            profileElonMusk2.setRelationshipStatus(RelationshipStatus.COMPLICATED);
+            profileElonMusk2.setAlcoholPreference(AlcoholPreference.RARELY);
+            profileElonMusk2.setSmokePreference(SmokePreference.SMOKE);
+            profileElonMusk2.setPhysicalActivity(PhysicalActivity.HATER);
+
+            ProfileEntity profileElonMusk3 = new ProfileEntity();
+            profileElonMusk3.setName("Elon");
+            profileElonMusk3.setGender(Gender.MALE);
+            profileElonMusk3.setAge((short) 53);
+            profileElonMusk3.setHeight((short) 188);
+            profileElonMusk3.setFaculty(faculty2);
+            profileElonMusk3.setCourse((short) 4);
+            profileElonMusk3.setAbout("Привет, меня зовут Илон Маск. Я инженер, предприниматель и мечтатель, посвятивший жизнь созданию технологий, которые могут изменить будущее человечества.");
+            profileElonMusk3.setDatingPurpose(DatingPurpose.NEW_EXPRESSION);
+            profileElonMusk3.setRelationshipStatus(RelationshipStatus.COMPLICATED);
+            profileElonMusk3.setAlcoholPreference(AlcoholPreference.RARELY);
+            profileElonMusk3.setSmokePreference(SmokePreference.SMOKE);
+            profileElonMusk3.setPhysicalActivity(PhysicalActivity.HATER);
+
+            ProfileEntity profileElonMusk4 = new ProfileEntity();
+            profileElonMusk4.setName("Elon");
+            profileElonMusk4.setGender(Gender.MALE);
+            profileElonMusk4.setAge((short) 53);
+            profileElonMusk4.setHeight((short) 188);
+            profileElonMusk4.setFaculty(faculty2);
+            profileElonMusk4.setCourse((short) 4);
+            profileElonMusk4.setAbout("Привет, меня зовут Илон Маск. Я инженер, предприниматель и мечтатель, посвятивший жизнь созданию технологий, которые могут изменить будущее человечества.");
+            profileElonMusk4.setDatingPurpose(DatingPurpose.NEW_EXPRESSION);
+            profileElonMusk4.setRelationshipStatus(RelationshipStatus.COMPLICATED);
+            profileElonMusk4.setAlcoholPreference(AlcoholPreference.RARELY);
+            profileElonMusk4.setSmokePreference(SmokePreference.SMOKE);
+            profileElonMusk4.setPhysicalActivity(PhysicalActivity.HATER);
+
             // creating RecommendationFilter
             RecommendationFilterEntity recommendationFilterElonMusk = new RecommendationFilterEntity();
+            RecommendationFilterEntity recommendationFilterElonMusk1 = new RecommendationFilterEntity();
+            RecommendationFilterEntity recommendationFilterElonMusk2 = new RecommendationFilterEntity();
+            RecommendationFilterEntity recommendationFilterElonMusk3 = new RecommendationFilterEntity();
+            RecommendationFilterEntity recommendationFilterElonMusk4 = new RecommendationFilterEntity();
 
             // ART
             TagEntity tagPhotography = new TagEntity();
@@ -620,10 +680,12 @@ public class DatabaseLoader {
             tagMusicLover.setEmoji("\uD83C\uDFB5");
             tagMusicLover.setCategory(TagCategory.MUSIC);
 
-
-
             // creating ManyToMany connection between Profiles and Tags
             profileElonMusk.setTags(Set.of(tagDesign, tagFitness));
+            profileElonMusk1.setTags(Set.of(tagDesign, tagBlues));
+            profileElonMusk2.setTags(Set.of(tagTechno, tagMusicLover));
+            profileElonMusk3.setTags(Set.of(tagClassical, tagDrama));
+            profileElonMusk4.setTags(Set.of(tagBasketball, tagExcursions));
 
             // creating Users
             UserEntity userElonMusk = new UserEntity();
@@ -631,6 +693,30 @@ public class DatabaseLoader {
             userElonMusk.setVerified(false);
             userElonMusk.setProfile(profileElonMusk);
             userElonMusk.setRecommendationFilter(recommendationFilterElonMusk);
+
+            UserEntity userElonMusk1 = new UserEntity();
+            userElonMusk1.setEmail("elonmusk@gmail.com");
+            userElonMusk1.setVerified(false);
+            userElonMusk1.setProfile(profileElonMusk1);
+            userElonMusk1.setRecommendationFilter(recommendationFilterElonMusk1);
+
+            UserEntity userElonMusk2 = new UserEntity();
+            userElonMusk2.setEmail("elonmusk@gmail.com");
+            userElonMusk2.setVerified(false);
+            userElonMusk2.setProfile(profileElonMusk2);
+            userElonMusk2.setRecommendationFilter(recommendationFilterElonMusk2);
+
+            UserEntity userElonMusk3 = new UserEntity();
+            userElonMusk3.setEmail("elonmusk@gmail.com");
+            userElonMusk3.setVerified(false);
+            userElonMusk3.setProfile(profileElonMusk3);
+            userElonMusk3.setRecommendationFilter(recommendationFilterElonMusk3);
+
+            UserEntity userElonMusk4 = new UserEntity();
+            userElonMusk4.setEmail("elonmusk@gmail.com");
+            userElonMusk4.setVerified(false);
+            userElonMusk4.setProfile(profileElonMusk4);
+            userElonMusk4.setRecommendationFilter(recommendationFilterElonMusk4);
 
 
             // adding faculties
@@ -759,10 +845,22 @@ public class DatabaseLoader {
 
             // adding profiles
             profileRepository.save(profileElonMusk);
+            profileRepository.save(profileElonMusk1);
+            profileRepository.save(profileElonMusk2);
+            profileRepository.save(profileElonMusk3);
+            profileRepository.save(profileElonMusk4);
             // adding filters
             recommendationFilterRepository.save(recommendationFilterElonMusk);
+            recommendationFilterRepository.save(recommendationFilterElonMusk1);
+            recommendationFilterRepository.save(recommendationFilterElonMusk2);
+            recommendationFilterRepository.save(recommendationFilterElonMusk3);
+            recommendationFilterRepository.save(recommendationFilterElonMusk4);
             // adding users
             userRepository.save(userElonMusk);
+            userRepository.save(userElonMusk1);
+            userRepository.save(userElonMusk2);
+            userRepository.save(userElonMusk3);
+            userRepository.save(userElonMusk4);
         }
     }
 
