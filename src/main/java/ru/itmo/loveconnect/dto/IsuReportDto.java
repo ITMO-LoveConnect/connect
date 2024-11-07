@@ -7,7 +7,7 @@ import ru.itmo.loveconnect.entity.enums.Gender;
 public class IsuReportDto {
     String fullName;
     Gender gender;
-    String facultyName;
+    FacultyDto faculty;
     String group;
     String course;
 }

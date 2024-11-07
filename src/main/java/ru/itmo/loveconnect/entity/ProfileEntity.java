@@ -86,15 +86,16 @@ public class ProfileEntity extends AbstractPersistable<UUID> {
     @Enumerated(EnumType.STRING)
     private PhysicalActivity physicalActivity;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "profile_tag",  // Название промежуточной таблицы
             joinColumns = @JoinColumn(name = "profile_id"),  // Колонка для profile
             inverseJoinColumns = @JoinColumn(name = "tag_id")  // Колонка для tag
     )
+    @ToString.Exclude
     private Set<TagEntity> tags;
 
-    @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "profile")
     @ToString.Exclude
     private List<UserSocialNetworkEntity> socialNetworks;
 }
