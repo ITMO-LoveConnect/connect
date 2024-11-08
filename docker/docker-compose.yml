@@ -72,6 +72,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-prod_user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-prod_password}
       POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-prod_access_key}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-prod_secret_key}
     profiles:
       - prod
     depends_on:
