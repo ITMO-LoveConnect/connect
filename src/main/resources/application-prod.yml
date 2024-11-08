@@ -5,7 +5,7 @@ spring:
     password: ${POSTGRES_PASSWORD}
     driverClassName: org.postgresql.Driver
   minio:
-    url: http://prod_minio:9000
+    url: http://prod-minio:9000
     secret-key: ${MINIO_SECRET_KEY}
     access-key: ${MINIO_ACCESS_KEY}
     bucket: photos

@@ -48,7 +48,7 @@ services:
     networks:
       - mynetwork
 
-  prod_minio:
+  prod-minio: # Важно через тире, иначе Invalid Request (invalid hostname)
     image: minio/minio
     profiles:
       - prod
