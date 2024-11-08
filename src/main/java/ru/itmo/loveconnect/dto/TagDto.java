@@ -13,5 +13,6 @@ import lombok.Value;
 public class TagDto {
     UUID id;
     String name;
+    String emoji;
     TagCategory category;
 }
