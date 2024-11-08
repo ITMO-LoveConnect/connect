@@ -2,6 +2,8 @@ package ru.itmo.loveconnect.s3.minio;
 
 import io.minio.*;
 import io.minio.messages.Item;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +17,11 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
+@RequiredArgsConstructor
 public class MinioService {
 
     private final MinioClient minioClient;
     private final MinioConfigurationProperties configurationProperties;
-
-    @Autowired
-    public MinioService(MinioClient minioClient, MinioConfigurationProperties configurationProperties) {
-        this.minioClient = minioClient;
-        this.configurationProperties = configurationProperties;
-    }
 
     /**
      * List all objects at root of the bucket
@@ -102,7 +99,7 @@ public class MinioService {
                     return itemResult.get();
                 } catch (Exception e) {
                     throw new MinioFetchException("Error while parsing list of objects", e);
-                } 
+                }
             })
             .collect(Collectors.toList());
     }

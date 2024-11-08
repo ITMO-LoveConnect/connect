@@ -5,6 +5,11 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 @Component
 @ConfigurationProperties("spring.minio")
 public class MinioConfigurationProperties {
@@ -65,93 +70,4 @@ public class MinioConfigurationProperties {
      * Will create the bucket if it do not exists on the Minio instance.
      */
     private boolean createBucket = true;
-
-    public Duration getConnectTimeout() {
-        return connectTimeout;
-    }
-
-    public void setConnectTimeout(Duration connectTimeout) {
-        this.connectTimeout = connectTimeout;
-    }
-
-    public Duration getWriteTimeout() {
-        return writeTimeout;
-    }
-
-    public void setWriteTimeout(Duration writeTimeout) {
-        this.writeTimeout = writeTimeout;
-    }
-
-    public Duration getReadTimeout() {
-        return readTimeout;
-    }
-
-    public void setReadTimeout(Duration readTimeout) {
-        this.readTimeout = readTimeout;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getAccessKey() {
-        return accessKey;
-    }
-
-    public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
-    }
-
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
-    public String getBucket() {
-        return bucket;
-    }
-
-    public void setBucket(String bucket) {
-        this.bucket = bucket;
-    }
-
-    public boolean isSecure() {
-        return secure;
-    }
-
-    public void setSecure(boolean secure) {
-        this.secure = secure;
-    }
-
-    public String getMetricName() {
-        return metricName;
-    }
-
-    public void setMetricName(String metricName) {
-        this.metricName = metricName;
-    }
-
-    public boolean isCheckBucket() {
-        return checkBucket;
-    }
-
-    public void setCheckBucket(boolean checkBucket) {
-        this.checkBucket = checkBucket;
-    }
-
-    public boolean isCreateBucket() {
-        return createBucket;
-    }
-
-    public void setCreateBucket(boolean createBucket) {
-        this.createBucket = createBucket;
-    }
-
 }
