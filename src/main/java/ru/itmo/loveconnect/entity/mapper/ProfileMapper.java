@@ -9,7 +9,8 @@ import org.mapstruct.ReportingPolicy;
 import ru.itmo.loveconnect.dto.ProfileDto;
 import ru.itmo.loveconnect.entity.ProfileEntity;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING,
+        uses = {ProfileMapper.class, FacultyMapper.class, UserSocialNetworkMapper.class})
 public interface ProfileMapper {
     ProfileEntity toEntity(ProfileDto profileDto);
 

@@ -1,10 +1,10 @@
 package ru.itmo.loveconnect.service;
 
-import ru.itmo.loveconnect.entity.UserEntity;
+import ru.itmo.loveconnect.dto.GetRecommendationDto;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface RecommendationService {
-    List<UserEntity> getRecommendationsByUserId(UUID userId, Short maxLastActiveDays, int numberOfUsers);
+    List<GetRecommendationDto> getRecommendationsByUserId(UUID userId, Short maxLastActiveDays, int numberOfUsers);
 }

@@ -6,7 +6,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
-import ru.itmo.loveconnect.dto.RecommendationDto;
+import ru.itmo.loveconnect.dto.GetRecommendationDto;
 import ru.itmo.loveconnect.entity.UserEntity;
 
 @Mapper(
@@ -14,10 +14,10 @@ import ru.itmo.loveconnect.entity.UserEntity;
         componentModel = MappingConstants.ComponentModel.SPRING,
         uses = {ProfileMapper.class})
 public interface RecommendationMapper {
-    UserEntity toEntity(RecommendationDto recommendationDto);
+    UserEntity toEntity(GetRecommendationDto getRecommendationDto);
 
-    RecommendationDto toDto(UserEntity userEntity);
+    GetRecommendationDto toDto(UserEntity userEntity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    UserEntity partialUpdate(RecommendationDto recommendationDto, @MappingTarget UserEntity userEntity);
+    UserEntity partialUpdate(GetRecommendationDto getRecommendationDto, @MappingTarget UserEntity userEntity);
 }

@@ -22,8 +22,7 @@ import ru.itmo.loveconnect.repo.RecommendationFilterRepository;
 import ru.itmo.loveconnect.repo.TagRepository;
 import ru.itmo.loveconnect.repo.UserRepository;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Configuration
@@ -142,10 +141,20 @@ public class DatabaseLoader {
 
             // creating RecommendationFilter
             RecommendationFilterEntity recommendationFilterElonMusk = new RecommendationFilterEntity();
+            recommendationFilterElonMusk.setMinAge((short) 18);
+            recommendationFilterElonMusk.setMaxAge((short) 70);
             RecommendationFilterEntity recommendationFilterElonMusk1 = new RecommendationFilterEntity();
+            recommendationFilterElonMusk1.setMinAge((short) 18);
+            recommendationFilterElonMusk1.setMaxAge((short) 70);
             RecommendationFilterEntity recommendationFilterElonMusk2 = new RecommendationFilterEntity();
+            recommendationFilterElonMusk2.setMinAge((short) 18);
+            recommendationFilterElonMusk2.setMaxAge((short) 70);
             RecommendationFilterEntity recommendationFilterElonMusk3 = new RecommendationFilterEntity();
+            recommendationFilterElonMusk3.setMinAge((short) 18);
+            recommendationFilterElonMusk3.setMaxAge((short) 70);
             RecommendationFilterEntity recommendationFilterElonMusk4 = new RecommendationFilterEntity();
+            recommendationFilterElonMusk4.setMinAge((short) 18);
+            recommendationFilterElonMusk4.setMaxAge((short) 70);
 
             // ART
             TagEntity tagPhotography = new TagEntity();
@@ -694,30 +703,35 @@ public class DatabaseLoader {
             userElonMusk.setEmail("elonmusk@gmail.com");
             userElonMusk.setVerified(false);
             userElonMusk.setProfile(profileElonMusk);
+            userElonMusk.setLastActive(LocalDateTime.now());
             userElonMusk.setRecommendationFilter(recommendationFilterElonMusk);
 
             UserEntity userElonMusk1 = new UserEntity();
             userElonMusk1.setEmail("elonmusk@gmail.com");
             userElonMusk1.setVerified(false);
             userElonMusk1.setProfile(profileElonMusk1);
+            userElonMusk1.setLastActive(LocalDateTime.now());
             userElonMusk1.setRecommendationFilter(recommendationFilterElonMusk1);
 
             UserEntity userElonMusk2 = new UserEntity();
             userElonMusk2.setEmail("elonmusk@gmail.com");
             userElonMusk2.setVerified(false);
             userElonMusk2.setProfile(profileElonMusk2);
+            userElonMusk2.setLastActive(LocalDateTime.now());
             userElonMusk2.setRecommendationFilter(recommendationFilterElonMusk2);
 
             UserEntity userElonMusk3 = new UserEntity();
             userElonMusk3.setEmail("elonmusk@gmail.com");
             userElonMusk3.setVerified(false);
             userElonMusk3.setProfile(profileElonMusk3);
+            userElonMusk3.setLastActive(LocalDateTime.now());
             userElonMusk3.setRecommendationFilter(recommendationFilterElonMusk3);
 
             UserEntity userElonMusk4 = new UserEntity();
             userElonMusk4.setEmail("elonmusk@gmail.com");
             userElonMusk4.setVerified(false);
             userElonMusk4.setProfile(profileElonMusk4);
+            userElonMusk4.setLastActive(LocalDateTime.now());
             userElonMusk4.setRecommendationFilter(recommendationFilterElonMusk4);
 
 

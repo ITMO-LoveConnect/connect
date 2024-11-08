@@ -12,19 +12,18 @@ import java.util.UUID;
 
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
-    @Query("SELECT u FROM UserEntity u " +
+    @Query(value = "SELECT u FROM UserEntity u " +
             "JOIN FETCH u.profile p " +
             "JOIN u.recommendationFilter f " +
             "LEFT JOIN LikeEntity r ON r.liked = u AND r.likedBy.id = :userId " +
             "WHERE r.id IS NULL " + // Пользователь не был лайкнут userId
-            "    AND (function('AGE', :timeNow, u.lastActive) < :maxLastActiveDays) " + // Фильтрация по времени активности
+            "    AND u.lastActive > :maxLastActive " +
             "    AND (f.preferredGender IS NULL OR p.gender = f.preferredGender) " + // Фильтрация по предпочтению пола
             "    AND function('AGE', :timeNow, p.birthDay) BETWEEN f.minAge * 365 AND f.maxAge * 365" + // Фильтрация по возрасту
             "ORDER BY u.lastActive DESC " + // Сортировка по времени последней активности
             "LIMIT :numberOfUsers")
     List<UserEntity> getRecommendationsByUserId(@Param("userId") UUID userId,
-                                                @Param("timeNow") LocalDateTime timeNow,
-                                                @Param("maxLastActiveDays") Short maxLastActiveDays,
+                                                @Param("maxLastActive") LocalDateTime maxLastActive,
                                                 @Param("numberOfUsers") int numberOfUsers);
 
     Optional<UserEntity> findByIsuNumber(final String isuNumber);
