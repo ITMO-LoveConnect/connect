@@ -36,7 +36,8 @@ public class WebSecurityConfig {
             "/swagger-ui/**",
             // other public endpoints
             "/auth/**",
-            "/tag"
+            "/tag",
+            "/photo/**"
     };
 
     @Bean
