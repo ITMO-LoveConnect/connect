@@ -79,7 +79,7 @@ services:
     depends_on:
       prod_postgres:
         condition: service_healthy
-      prod_minio:
+      prod-minio:
         condition: service_started
     ports:
       - "8080:8080"
